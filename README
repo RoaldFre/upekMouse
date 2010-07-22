@@ -1,0 +1,21 @@
+Using an Upek fingerprint reader for 2D scrolling and middle mouse button.
+
+You need the Upek SDK for this to work from:
+http://www.upek.com/solutions/pc_and_networking/sdks/linux/
+
+The scolling has a feature of inertia to allow one to efficiently scroll 
+large distances. The parameters can be adjusted in the source file.
+
+A small word of caution: The binary blob from Upek fires a timer about 1000 
+times per second. These wakeups give an additional 2 Watts of power usage 
+on my laptop, I therefor disable this when running on battery power.
+More caution: There appears to be a bug in the code that makes it crash if 
+you compile with high optimizations. If you find it, please let me know.
+
+The licence on the code:
+Do whatever you want with it, but drop me a word if you use it or did 
+something awesome with it ;-).
+
+
+Roald Frederickx
+roald <dot> frederickx <at> gmail <dot> com
