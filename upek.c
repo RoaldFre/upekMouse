@@ -12,7 +12,8 @@
 #include <unistd.h> //debug
 
 
-#define DEFAULT_FILE	"/dev/input/uinput"
+//#define DEFAULT_FILE	"/dev/input/uinput"
+#define DEFAULT_FILE	"/dev/uinput"
 
 #define DEVICE_NAME	"Upek fingerprint reader"
 #define VERSION		1
