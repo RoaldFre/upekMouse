@@ -3,6 +3,22 @@ Using an Upek fingerprint reader for 2D scrolling and middle mouse button.
 You need the Upek SDK for this to work from:
 http://www.upek.com/solutions/pc_and_networking/sdks/linux/
 
+[********************************* UPDATE *********************************]
+The above link no longer seems to work. Apparently Upek merged into 
+AuthenTec in October 2012, followed by them dropping all support (as 
+mentioned on http://support.authentec.com/Home.aspx at the time of 
+writing).
+
+There is still a page on their new site that mentions the SDK: 
+http://support.authentec.com/Downloads/Drivers/Linux.aspx
+Alas, the link in there is also broken at the moment.
+
+Search keywords to find the SDK elsewhere would be something along the 
+lines of "BSAPI SDK". Please let me know if the situation has changed, or 
+if you've found a mirror somewhere. My email adress is at the bottom of 
+this document.
+[******************************** /UPDATE *********************************]
+
 The scolling has a feature of inertia to allow one to efficiently scroll 
 large distances. The parameters can be adjusted in the source file.
 
