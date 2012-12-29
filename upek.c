@@ -9,8 +9,6 @@
 #include <signal.h>
 #include <error.h>
 
-#include <unistd.h> //debug
-
 
 //#define DEFAULT_FILE	"/dev/input/uinput"
 #define DEFAULT_FILE	"/dev/uinput"
@@ -82,7 +80,6 @@ static int connect_fingerprint(ABS_CONNECTION *conn)
 	status = ABSOpen("usb", conn);
 	if(status != ABS_STATUS_OK) {
 		fprintf(stderr, "[%ld] ABSOpen() failed.\n", (long)status);
-	//usleep(1000000);
 		return -1;
 	}
 	return 0;
@@ -93,11 +90,9 @@ static int disconnect_fingerprint(ABS_CONNECTION *conn)
 	ABS_STATUS status;
 
 	printf("Closing fingerprint connection\n");
-	//usleep(1000000);
 	status = ABSClose(*conn);
 	if(status != ABS_STATUS_OK) {
 		fprintf(stderr, "[%ld] ABSClose() failed.\n", (long)status);
-	//usleep(1000000);
 		return -1;
 	}
 	return 0;
@@ -113,13 +108,11 @@ static int initOutFile()
 
 	/* Try opening the file */
 	printf("Opening %s\n",config.filename);
-	//usleep(1000000);
 	outFile = open(config.filename, O_WRONLY | O_NDELAY);
 	if (-1 == outFile){
 		fprintf(stderr, "Error opening file %s (error %d)\n",
 				config.filename, outFile);
 		perror("open");
-	//usleep(1000000);
 		return -1;
 	}
 
@@ -130,7 +123,6 @@ static int initOutFile()
 	uinp.id.bustype = BUSTYPE;
 	if ( (int)sizeof(uinp) > write(outFile, &uinp, sizeof(uinp))){
 		fprintf(stderr, "Error writing defice information\n");
-	//usleep(1000000);
 		closeOutFile();
 		return -1;
 	}
@@ -151,7 +143,6 @@ static int initOutFile()
 	if (ret){
 		perror("ioctl");
 		fprintf(stderr, "ERROR: ioctl() failed\n");
-	//usleep(1000000);
 		closeOutFile();
 		return -1;
 	}
@@ -163,11 +154,9 @@ static int initOutFile()
 static void destrOutFile()
 {
 	printf("Unregistering event file\n");
-	//usleep(1000000);
 	if (-1 == ioctl(outFile, UI_DEV_DESTROY)){
 		perror("ioctl");
 		fprintf(stderr,"ERROR: Couldn't destroy the uinput device!\n");
-	//usleep(1000000);
 	}
 	closeOutFile();
 }
@@ -175,7 +164,6 @@ static void destrOutFile()
 static void closeOutFile()
 {
 	printf("Closing outFile\n");
-	//usleep(1000000);
 	close(outFile);
 }
 
@@ -331,7 +319,6 @@ static int start_navigation(ABS_CONNECTION *conn)
 	 * ABS_STATUS_OK. */
 	if(status == ABS_STATUS_CANCELED){
 		printf("Navigation got cancelled\n");
-	//usleep(1000000);
 		return 0;
 	}
 
@@ -369,7 +356,6 @@ int main(int argc, char **argv)
 	ret = start_navigation(&conn);
 
 	printf("Cleaning up\n");
-	//usleep(1000000);
 	disconnect_fingerprint(&conn);
 	destrOutFile();
 
@@ -407,19 +393,16 @@ static void sigHandler(int sig)
 	ABS_STATUS status;
 
 	printf("\nCaught signal %d. Exiting.\n", sig);
-	//usleep(1000000);
 
 	/* Cancel the operation, the navigation function will stop, and 
 	 * main will exit cleanly */
 	status = ABSCancelOperation(conn, OPERATION_ID);
 	if (status == ABS_STATUS_OK){
 		printf("Cancel command sent sucessfully\n");
-	//usleep(1000000);
 		return;
 	}
 	
 	fprintf(stderr, "ERROR: Cancel failed! Error %d\n", status);
-	//usleep(1000000);
 	/* Might try doing it the hard way, just closing the connection 
 	 * etc. Or the user should do it himself, retrying the signal or 
 	 * sending a stronger signal.
