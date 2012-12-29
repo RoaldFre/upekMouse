@@ -17,6 +17,10 @@ Search keywords to find the SDK elsewhere would be something along the
 lines of "BSAPI SDK". Please let me know if the situation has changed, or 
 if you've found a mirror somewhere. My email adress is at the bottom of 
 this document.
+
+For the time being, I've found a mirror at
+https://bitbucket.org/hughw/biopass/src/f65714410179cad31d2a02ca26fe3fd31b29bdaa/BSAPI_3.6_for_Linux
+I'm not too keen on bundling it myself because of licensing issues.
 [******************************** /UPDATE *********************************]
 
 The scolling has a feature of inertia to allow one to efficiently scroll 
