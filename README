@@ -1,5 +1,8 @@
 Using an Upek fingerprint reader for 2D scrolling and middle mouse button.
 
+The latest version of the code can be found at: 
+https://github.com/RoaldFre/upekMouse
+
 You need the Upek SDK for this to work from:
 http://www.upek.com/solutions/pc_and_networking/sdks/linux/
 
